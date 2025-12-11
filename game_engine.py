@@ -1,4 +1,10 @@
 from components import *
+def cli_coords_input():
+    while True:
+            y = int(input("Enter Coordinate of row  0 - 7"))
+            x = int(input("Enter Coordinates of column 0 - 7 "))
+            break
+    return((x,y))#in order col,row
 def check_legal_move(board,colour):
     if colour == 'Dark ':
         Opp_colour = 'Light'
@@ -37,6 +43,7 @@ def check_legal_move(board,colour):
                             return(True)
                     #if board[i[0]row ]
     return(False)
+
 def simple_game_loop():
     print("Hello game has started ")
     board = initialise_board()
@@ -52,13 +59,7 @@ def simple_game_loop():
                 colour = 'Dark '
         print_board(board)
         print(colour,":")
-        while True:
-            y = int(input("Enter Coordinate of row  0 - 7"))
-            x = int(input("Enter Coordinates of column 0 - 7 "))
-            if legal_move(colour,(y,x),board) == True:
-                break
-            else:
-                print("Incorrect Coordinate you selected coordinate ",y,x,"which is a", board[y][x],"square")
+        Coords =cli_coords_input()#(in order row,col)
         board = flip_peices(board,colour,(y,x))
         print(board[4][3])
         moves -= 1
@@ -82,5 +83,4 @@ def simple_game_loop():
     else:
         print("It was a draw", Dark_count ," to ", Light_count)
 #simple_game_loop()
-# if __name__ == "__main__":
-#     simple_game_loop()
+
